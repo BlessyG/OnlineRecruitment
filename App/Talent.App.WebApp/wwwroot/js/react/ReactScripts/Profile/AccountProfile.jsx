@@ -41,7 +41,24 @@ export default class AccountProfile extends React.Component {
                 jobSeekingStatus: {
                     status: "",
                     availableDate: null
-                }
+                },
+
+                firstName: '',
+                lastName: '',
+                middleName: '',
+                gender: '',
+                mobilePhone: null,
+                email: '',
+                phone: null,
+
+                cvName: '',
+                cvUrl: '',
+                description: '',
+                isMobilePhoneVerified: false,
+                profilePhotoUrl: '',
+                summary: '',
+                videoName: '',
+                videoUrl:''
             },
             loaderData: loaderData,
 
@@ -103,6 +120,8 @@ export default class AccountProfile extends React.Component {
 
     saveProfile() {
         var cookies = Cookies.get('talentAuthToken');
+        console.log(JSON.stringify(this.state.profileData));
+        debugger
         $.ajax({
             url: 'http://localhost:60290/profile/profile/updateTalentProfile',
             headers: {
