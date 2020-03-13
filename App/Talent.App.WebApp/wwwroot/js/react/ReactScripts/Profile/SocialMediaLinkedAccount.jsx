@@ -1,18 +1,23 @@
 ﻿/* Social media JSX */
 import React from 'react';
 import { ChildSingleInput } from '../Form/SingleInput.jsx';
-import { Popup } from 'semantic-ui-react';
+import { Popup, Icon } from 'semantic-ui-react';
 
 export default class SocialMediaLinkedAccount extends React.Component {
     constructor(props) {
         super(props);
-        const linkedAccounts = props.linkedAccounts ? Object.assign({}, props.linkedAccounts) : {
-            linkedIn: "",
-            github: ""
+        debugger
+        const prevLinkedAccounts = props.linkedAccounts ? Object.assign({}, props.linkedAccounts) : {
+            
+                linkedIn: "",
+                github: ""
+            
         }
         this.state = {
             showEditSection: false,
-            newLinkedAccounts: linkedAccounts
+            newLinkedAccounts: {
+                linkedAccounts: prevLinkedAccounts
+            }
         }
         this.openEdit = this.openEdit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -33,16 +38,19 @@ export default class SocialMediaLinkedAccount extends React.Component {
     }
 
     handleChange(event) {
-        const data = Object.assign({}, this.state.linkedAccounts)
+        debugger
+        const data = Object.assign({}, this.state.newLinkedAccounts)
         data[event.target.name] = event.target.value
         this.setState({
-            newLinkedAccounts: data
+            newLinkedAccounts: { linkedAccounts: data }
         })
     }
 
     saveContact() {
+        
         const data = Object.assign({}, this.state.newLinkedAccounts)
-        console.log("Social Media data to save "+data)
+
+        console.log("Social Media data to save " + data.github)
         this.props.saveProfileData(data)
         this.closeEdit();
     }
@@ -100,7 +108,8 @@ export default class SocialMediaLinkedAccount extends React.Component {
             <div className='row'>
                 <div className="ui sixteen wide column">
                     <React.Fragment>
-                        <p>linkedIn: {linkedIn} github: {github}</p>
+                        <button type="button" className="ui left floated blue button" onClick={linkedIn ? () => window.open(linkedIn) :this.openEdit}><Icon name="linkedin"/>LinkedIn</button>
+                        <button type="button" className="ui left floated black button" onClick={github ? () => window.open(github) :this.openEdit}><Icon name="github"/>GitHub</button>
                         <button type="button" className="ui right floated teal button" onClick={this.openEdit}>Edit</button>
                     </React.Fragment>
                     

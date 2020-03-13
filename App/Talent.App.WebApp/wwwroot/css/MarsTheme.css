@@ -328,7 +328,15 @@
 i.circular.icon {
     box-shadow: 0em 0em 0em 0.02em rgb(33, 33, 33) inset !important;
 }
-
+/*added by blessy form SocialMediaLinkedAccount page*/
+.ui.left.floated.blue.button {
+    margin-right: 1.5em;
+    min-width: 160px;
+}
+.ui.left.floated.black.button {    
+    min-width: 160px;
+}
+/*added by blessy form SocialMediaLinkedAccount page end*/
 /* Search results page */
 .search-results .ui.card .ui.image img {
     height: 155px;
