@@ -328,7 +328,7 @@
 i.circular.icon {
     box-shadow: 0em 0em 0em 0.02em rgb(33, 33, 33) inset !important;
 }
-/*added by blessy form SocialMediaLinkedAccount page*/
+/*added by blessy for SocialMediaLinkedAccount page*/
 .ui.left.floated.blue.button {
     margin-right: 1.5em;
     min-width: 160px;
@@ -336,9 +336,21 @@ i.circular.icon {
 .ui.left.floated.black.button {    
     min-width: 160px;
 }
-/*added by blessy form SocialMediaLinkedAccount page end*/
-/* Search results page */
-.search-results .ui.card .ui.image img {
+/*added by blessy for SocialMediaLinkedAccount page end*/
+/*added by blessy for Location page*/
+
+.ui.form input[name="number"], .ui.form input[name="suburb"], .ui.form input[name="postCode"] {
+    width: 20%;
+}
+.ui.form input[name="street"] {
+    width: 40%;
+}
+.ui.form select[name="city"], .ui.form select[name="country"] {
+    width: 30%;
+}
+    /*added by blessy for Location page end*/
+    /* Search results page */
+    .search-results .ui.card .ui.image img {
     height: 155px;
 }
 

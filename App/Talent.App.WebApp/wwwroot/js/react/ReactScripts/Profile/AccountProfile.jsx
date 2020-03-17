@@ -24,7 +24,14 @@ export default class AccountProfile extends React.Component {
 
         this.state = {
             profileData: {
-                address: {},
+                address: {
+                    number: '',
+                    street: '',
+                    postCode: null,
+                    suburb: '',
+                    city: '',
+                    country:''
+                },
                 nationality: '',
                 education: [],
                 languages: [],

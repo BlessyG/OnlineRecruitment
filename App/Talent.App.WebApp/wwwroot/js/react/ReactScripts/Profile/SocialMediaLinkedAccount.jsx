@@ -6,7 +6,7 @@ import { Popup, Icon } from 'semantic-ui-react';
 export default class SocialMediaLinkedAccount extends React.Component {
     constructor(props) {
         super(props);
-        debugger
+        
         const prevLinkedAccounts = this.props.linkedAccounts ? Object.assign({}, this.props.linkedAccounts) : {
             
                 linkedIn: "",
