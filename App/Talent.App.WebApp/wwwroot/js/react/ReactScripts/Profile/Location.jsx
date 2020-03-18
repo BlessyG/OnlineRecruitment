@@ -8,8 +8,8 @@ import { nationality } from '../Employer/common.js'
 export class Address extends React.Component {
     constructor(props) {
         super(props)
-
-        const details = props.addressData ?
+        
+        const details = this.props.addressData ?
             Object.assign({}, props.addressData)
             : {
                 number: '',
@@ -19,7 +19,6 @@ export class Address extends React.Component {
                 city: '',
                 country: ''
             }
-
         this.state = {
             showEditSection: false,
             newAddress: details,

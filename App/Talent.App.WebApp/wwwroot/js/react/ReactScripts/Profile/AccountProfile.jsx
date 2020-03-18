@@ -20,8 +20,7 @@ import TalentStatus from './TalentStatus.jsx';
 
 export default class AccountProfile extends React.Component {
     constructor(props) {
-        super(props)
-        debugger
+        super(props)        
         this.state = {
             profileData: {
                 address: {

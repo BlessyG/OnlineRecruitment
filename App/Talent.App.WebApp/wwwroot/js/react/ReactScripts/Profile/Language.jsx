@@ -6,12 +6,10 @@ import { languageLevel } from '../Employer/common.js'
 
 export default class Language extends React.Component {
     constructor(props) {
-        debugger
-        super(props);  
-        var details = [];
-        details = this.props.languageData ?
-            Object.assign({}, this.props.languageData)
-            : ""
+        super(props); 
+        const langDetails = this.props.languageData ?
+            Object.assign({}, props.languageData)
+            : []
         this.state = {
             showAddSection: false,
             options: {
@@ -19,9 +17,9 @@ export default class Language extends React.Component {
                 name: "",
                 level: ""
             },
-            languageList: []
+            languageList: langDetails,
+            loading: true
         }
-        this.state.languageList = this.props.languageData;
         this.handleAddRecord = this.handleAddRecord.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
@@ -32,9 +30,10 @@ export default class Language extends React.Component {
         return true;
     }
     handleChange(event, objReference) {  
-        debugger
+        
         const id = event.target.id;
-        var data = Object.assign({}, this.state.options);
+        //var data = [...this.state.options];
+        var data = this.state.options;
         const name = objReference.name;
         let value = objReference.value;        
         data["level"] = value;
@@ -44,7 +43,8 @@ export default class Language extends React.Component {
     }
     handleChangeText(event) {        
         const id = event.target.id;
-        const data = Object.assign({}, this.state.options)
+        //var data = [...this.state.options]
+        var data = this.state.options
         data[event.target.id] = event.target.value
         this.setState({
             options: data
@@ -55,15 +55,21 @@ export default class Language extends React.Component {
             showEditSection: false
         })
     }
-    addLanguage() {  
-        this.state.languageList.push(this.state.options); 
-        var data = Object.assign({}, this.state.options)              
+    addLanguage() {
+        debugger        
+        //var data = Object.assign({}, this.state.languageList, this.state.options, this.props.languageData) 
+        var arr = [this.state.options]
+        var data = [...arr,...this.props.languageData]
+        this.setState({
+            languageList: [...data]
+        });
         var updateData = {
-            languages:  [data]
+            languages:  [...data]
         }
         this.props.updateProfileData(updateData)
     }
     render() {
+        //const finalList = this.state.languageList;       
         return (
             <div className='row'>
                 <div className="ui sixteen wide column">
@@ -100,7 +106,7 @@ export default class Language extends React.Component {
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body>
-                                {this.state.languageList.map((langList) =>
+                                {this.props.languageData.map((langList) =>
                                     <Table.Row key={langList.id}>
                                         <Table.Cell>{langList.name}</Table.Cell>
                                         <Table.Cell>{langList.level}</Table.Cell>
