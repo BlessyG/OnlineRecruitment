@@ -17,20 +17,18 @@ export default class Language extends React.Component {
                 name: "",
                 level: ""
             },
-            languageList: langDetails,
-            loading: true
+            languageList: langDetails            
         }
-        this.handleAddRecord = this.handleAddRecord.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
         this.addLanguage = this.addLanguage.bind(this);
+        this.handleAddRecord = this.handleAddRecord.bind(this);
         this.closeEdit = this.closeEdit.bind(this);
     }
     handleAddRecord() {
-        return true;
+        this.setState({ showAddSection: true });
     }
-    handleChange(event, objReference) {  
-        
+    handleChange(event, objReference) {          
         const id = event.target.id;
         //var data = [...this.state.options];
         var data = this.state.options;
@@ -51,22 +49,21 @@ export default class Language extends React.Component {
         })
     }
     closeEdit() {
-        this.setState({
-            showEditSection: false
-        })
+        this.setState({ showAddSection: false });
     }
+    
     addLanguage() {
-        debugger        
+                
         //var data = Object.assign({}, this.state.languageList, this.state.options, this.props.languageData) 
         var arr = [this.state.options]
-        var data = [...arr,...this.props.languageData]
-        this.setState({
-            languageList: [...data]
-        });
+        var data = [...arr,...this.props.languageData]        
         var updateData = {
             languages:  [...data]
         }
         this.props.updateProfileData(updateData)
+        this.setState({
+            languageList: [...data], showAddSection:false
+        });
     }
     render() {
         //const finalList = this.state.languageList;       
@@ -74,7 +71,8 @@ export default class Language extends React.Component {
             <div className='row'>
                 <div className="ui sixteen wide column">
                     <React.Fragment>
-                        <div className='row'>
+                        {this.state.showAddSection ?
+                            <div className='row'>
                             <div className="ui sixteen wide column">
                                 <input
                                     type="text"
@@ -95,8 +93,8 @@ export default class Language extends React.Component {
                                 />
                                 <button type="button" className="ui teal button" onClick={this.addLanguage}>Add</button>
                                 <button type="button" className="ui button" onClick={this.closeEdit}>Cancel</button>
-                            </div>
-                        </div>
+                            </div> 
+                            </div> : ""}
                         <Table stackable>
                             <Table.Header>
                                 <Table.Row>

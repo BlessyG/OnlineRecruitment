@@ -238,7 +238,7 @@ export class Nationality extends React.Component {
             text: state,
             value: state,
         }))
-        let nationalityData = this.state.newData.nationality;
+        let nationalityData = this.props.nationalityData;
         return (
 
             <div className='row'>
