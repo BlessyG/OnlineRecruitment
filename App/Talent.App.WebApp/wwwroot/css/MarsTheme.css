@@ -352,6 +352,31 @@ i.circular.icon {
     margin-right: 1.0em;
 }
     /*added by blessy for Location page end*/
+/*added by blessy for Language page*/
+
+.ui.form input[name="number"], .ui.form input[name="suburb"], .ui.form input[name="postCode"] {
+    width: 20%;
+    margin-right: 1.0em;
+}
+
+.ui.form input[id="editName"], .ui.dropdown.editLanguage {
+    width: 90%;
+    margin-right: 1.0em;
+}
+
+
+.div.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.div.column {
+    display: flex;
+    flex-direction: column;
+}
+
+/*added by blessy for Language page end*/
     /* Search results page */
     .search-results .ui.card .ui.image img {
     height: 155px;

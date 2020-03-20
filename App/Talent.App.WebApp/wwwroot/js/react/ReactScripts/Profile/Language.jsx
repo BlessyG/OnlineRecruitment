@@ -1,13 +1,15 @@
 ﻿/* Language section */
 import React from 'react';
 import Cookies from 'js-cookie';
-import { Table, Icon, Dropdown } from 'semantic-ui-react';
+import { Table, Icon, Dropdown,Button } from 'semantic-ui-react';
 import { languageLevel } from '../Employer/common.js'
 export default class Language extends React.Component {    
     constructor(props) {
         super(props);         
         this.state = {
             showAddSection: false,
+            showTableEdit: false,
+            showTableData: true,
             options: {
                 id: "",
                 name: "",
@@ -20,6 +22,10 @@ export default class Language extends React.Component {
         this.addLanguage = this.addLanguage.bind(this);
         this.handleAddRecord = this.handleAddRecord.bind(this);
         this.closeEdit = this.closeEdit.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+        this.closeEditTable = this.closeEditTable.bind(this);
+        this.editRecord = this.editRecord.bind(this);
+        this.closeRecord = this.closeRecord.bind(this);
     }
     handleAddRecord() {
         this.setState({ showAddSection: true });
@@ -64,6 +70,24 @@ export default class Language extends React.Component {
             showAddSection: false, options: {id:"",name:"",level:""}
         });
     }
+    handleUpdate() {
+        return true;
+    }
+    closeEditTable() {
+        this.setState({ showTableData: true });
+    }
+    editRecord() {
+        this.setState({ showTableData: false });
+    }
+    closeRecord(id) {
+        //var deleteLang = this.props.languageData
+        //deleteLang = deleteLang.filter(item => id !== item.id)
+        //var updateData = {
+        //    languages: [...deleteLang]
+        //}
+        //this.props.updateProfileData(updateData)
+        return true;
+    }
     render() {
         //const finalList = this.state.languageList;       
         return (
@@ -104,11 +128,48 @@ export default class Language extends React.Component {
                             </Table.Header>
                             <Table.Body>
                                 {this.props.languageData.map((langList) =>
-                                    <Table.Row key={langList.id}>
-                                        <Table.Cell>{langList.name}</Table.Cell>
-                                        <Table.Cell>{langList.level}</Table.Cell>
-                                        <Table.Cell textAlign='right'><button type="button" className="ui teal button" onClick={this.addLanguage}>Add</button>
-                                            <button type="button" className="ui button" onClick={this.closeEdit}>Cancel</button></Table.Cell>
+                                    <Table.Row key={langList.id} >
+                                        <Table.Cell >
+                                            {this.state.showTableData ?
+                                                <div className="ui sixteen wide column">{langList.name}</div> :
+                                                <div className="ui sixteen wide column">
+                                                    <input
+                                                        type="text"
+                                                        name="editlanguage"
+                                                        placeholder={langList.name}
+                                                        maxLength={12}
+                                                        onChange={this.handleChangeText}
+                                                        id="editName"
+                                                    />
+                                                </div>}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {this.state.showTableData ?
+                                                <div className="ui sixteen wide column">{langList.level}</div> :
+                                                <div className="ui sixteen wide column">
+                                                    <Dropdown
+                                                        name="editlanguageLevel"
+                                                        search selection
+                                                        options={languageLevel}
+                                                        onChange={this.handleChange}
+                                                        placeholder={langList.level}
+                                                        className="ui dropdown editLanguage"
+                                                        id="editLevel"
+                                                    /></div>
+                                            }
+                                        </Table.Cell>
+                                        <Table.Cell >
+                                            {this.state.showTableData ?
+                                                <div className="div row" textAlign='right'>
+                                                    <div className="div column" onClick={this.editRecord}><Icon name="pencil" /></div>
+                                                    <div className="div column" onClick={this.closeRecord(langList.id)}><Icon name="close" /></div>
+                                                </div> :
+                                                <div className="ui sixteen wide column" textAlign="left">
+                                                    <Button basic color='blue' content='Update' onClick={this.handleUpdate} />
+                                                    <Button basic color='red' content='Cancel' onClick={this.closeEditTable} />
+                                                </div>
+                                            }
+                                        </Table.Cell>
                                     </Table.Row>
                                 )}
                             </Table.Body>
