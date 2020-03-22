@@ -54,8 +54,7 @@ export default class Language extends React.Component {
         this.setState({ showAddSection: false });
     }
     
-    addLanguage() {
-                
+    addLanguage() {                
         //var data = Object.assign({}, this.state.languageList, this.state.options, this.props.languageData) 
         var arr = [this.state.options]
         var data = [...arr,...this.props.languageData]        
@@ -79,14 +78,17 @@ export default class Language extends React.Component {
     editRecord() {
         this.setState({ showTableData: false });
     }
-    closeRecord(id) {
-        //var deleteLang = this.props.languageData
-        //deleteLang = deleteLang.filter(item => id !== item.id)
-        //var updateData = {
-        //    languages: [...deleteLang]
-        //}
-        //this.props.updateProfileData(updateData)
-        return true;
+    closeRecord(event) {      
+        debugger
+        event.preventDefault();
+        var id = event.target.id;
+        var deleteLang = this.props.languageData
+        deleteLang = deleteLang.filter(item => id !== item.id)
+        //console.log(...deleteLang);
+        var updateData = {
+            languages: [...deleteLang]
+        }
+        this.props.updateProfileData(updateData)
     }
     render() {
         //const finalList = this.state.languageList;       
@@ -123,7 +125,7 @@ export default class Language extends React.Component {
                                 <Table.Row>
                                     <Table.HeaderCell>Language</Table.HeaderCell>
                                     <Table.HeaderCell>Level</Table.HeaderCell>
-                                    <Table.HeaderCell textAlign='right'><button type="button" className="ui teal button" onClick={this.handleAddRecord}><Icon name="add" />Add New</button></Table.HeaderCell>
+                                    <Table.HeaderCell textalign='right'><button type="button" className="ui teal button" onClick={this.handleAddRecord}><Icon name="add" />Add New</button></Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body>
@@ -160,11 +162,11 @@ export default class Language extends React.Component {
                                         </Table.Cell>
                                         <Table.Cell >
                                             {this.state.showTableData ?
-                                                <div className="div row" textAlign='right'>
-                                                    <div className="div column" onClick={this.editRecord}><Icon name="pencil" /></div>
-                                                    <div className="div column" onClick={this.closeRecord(langList.id)}><Icon name="close" /></div>
+                                                <div className="div row" textalign='right'>
+                                                    <div className="div column"><Icon name="pencil" value={langList.id} onClick={this.editRecord}/></div>
+                                                    <div className="div column"><Icon name="close" id={langList.id} onClick={this.closeRecord}/></div>
                                                 </div> :
-                                                <div className="ui sixteen wide column" textAlign="left">
+                                                <div className="ui sixteen wide column" textalign="left">
                                                     <Button basic color='blue' content='Update' onClick={this.handleUpdate} />
                                                     <Button basic color='red' content='Cancel' onClick={this.closeEditTable} />
                                                 </div>
