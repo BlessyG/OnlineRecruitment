@@ -89,10 +89,10 @@ export default class Skill extends React.Component {
     closeRecord(event) {
         event.preventDefault();
         var id = event.target.id;
-        var deleteLang = this.props.skillData
-        deleteLang = deleteLang.filter(item => id !== item.id)
+        var deleteSkil = this.props.skillData
+        deleteSkil = deleteSkill.filter(item => id !== item.id)
         var updateData = {
-            skills: [...deleteLang]
+            skills: [...deleteSkill]
         }
         this.props.updateProfileData(updateData);
         this.setState({ showTableData: true });
@@ -135,44 +135,44 @@ export default class Skill extends React.Component {
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body>
-                                {this.props.skillData.map((langList, index) =>
-                                    <Table.Row key={langList.id} >
+                                {this.props.skillData.map((skillList, index) =>
+                                    <Table.Row key={skillList.id} >
                                         <Table.Cell >
-                                            {!this.state.showTableData && this.state.tableEditId == langList.id ?
+                                            {!this.state.showTableData && this.state.tableEditId == skillList.id ?
                                                 <div className="ui sixteen wide column">
                                                     <input
                                                         type="text"
                                                         name="editSkill"
-                                                        placeholder={langList.name}
+                                                        placeholder={skillList.name}
                                                         maxLength={12}
                                                         onChange={this.handleChangeText}
                                                         id="editName"
                                                     />
-                                                </div> : <div className="ui sixteen wide column">{langList.name}</div>}
+                                                </div> : <div className="ui sixteen wide column">{skillList.name}</div>}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            {!this.state.showTableData && this.state.tableEditId == langList.id ?
+                                            {!this.state.showTableData && this.state.tableEditId == skillList.id ?
                                                 <div className="ui sixteen wide column">
                                                     <Dropdown
                                                         name="editSkillLevel"
                                                         search selection
                                                         options={skillLevel}
                                                         onChange={this.handleChange}
-                                                        placeholder={langList.level}
+                                                        placeholder={skillList.level}
                                                         className="ui dropdown editSkill"
                                                         id="editLevel"
-                                                    /></div> : <div className="ui sixteen wide column">{langList.level}</div>
+                                                    /></div> : <div className="ui sixteen wide column">{skillList.level}</div>
                                             }
                                         </Table.Cell>
                                         <Table.Cell >
-                                            {!this.state.showTableData && this.state.tableEditId == langList.id ?
+                                            {!this.state.showTableData && this.state.tableEditId == skillList.id ?
                                                 <div className="ui sixteen wide column" textalign="left">
-                                                    <Button basic color='blue' content='Update' onClick={(e) => this.handleUpdate(index, langList.name, langList.level, e)} />
+                                                    <Button basic color='blue' content='Update' onClick={(e) => this.handleUpdate(index, skillList.name, skillList.level, e)} />
                                                     <Button basic color='red' content='Cancel' onClick={this.closeEditTable} />
                                                 </div> :
                                                 <div className="div row" textalign='right'>
-                                                    <div className="div column"><Icon name="pencil" id={langList.id} onClick={this.editRecord} /></div>
-                                                    <div className="div column"><Icon name="close" id={langList.id} onClick={this.closeRecord} /></div>
+                                                    <div className="div column"><Icon name="pencil" id={skillList.id} onClick={this.editRecord} /></div>
+                                                    <div className="div column"><Icon name="close" id={skillList.id} onClick={this.closeRecord} /></div>
                                                 </div>
                                             }
                                         </Table.Cell>
