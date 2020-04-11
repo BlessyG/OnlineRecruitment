@@ -59,7 +59,7 @@ export default class PhotoUpload extends Component {
         var cookies = Cookies.get('talentAuthToken');
 
         $.ajax({
-            url: 'http://localhost:60290/profile/profile/updateProfilePhoto',
+            url: 'https://talent-advanced-profile.azurewebsites.net/profile/profile/updateProfilePhoto',
             headers: {
                 'Authorization': 'Bearer ' + cookies
             },
