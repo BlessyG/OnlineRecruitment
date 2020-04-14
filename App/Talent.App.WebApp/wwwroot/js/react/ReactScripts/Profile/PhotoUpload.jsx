@@ -59,7 +59,7 @@ export default class PhotoUpload extends Component {
         var cookies = Cookies.get('talentAuthToken');
 
         $.ajax({
-            url: 'http://localhost:60290/profile/profile/updateProfilePhoto',
+            url: 'https://talentprofileserv.azurewebsites.net/profile/profile/updateProfilePhoto',
             headers: {
                 'Authorization': 'Bearer ' + cookies
             },
@@ -84,7 +84,7 @@ export default class PhotoUpload extends Component {
     }
 
     render() {
-        debugger
+        
         let showProfileImg = [];
         let profileUrl = this.state.imageSrc ? this.state.imageSrc : this.props.imageId;
         //let test = `url(${URL.createObjectURL(this.props.imageId)}`;
